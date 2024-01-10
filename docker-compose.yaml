@@ -45,6 +45,7 @@ services:
     ports:
       - '19092:19092'
     environment:
+      - KAFKA_CFG_NODE_ID=1
       - KAFKA_ENABLE_KRAFT=yes
       - KAFKA_CFG_PROCESS_ROLES=broker,controller
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
