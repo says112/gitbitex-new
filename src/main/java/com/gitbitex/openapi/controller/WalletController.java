@@ -66,7 +66,7 @@ public class WalletController {
         }
         
         Wallet wallet = walletManager.getOrCreateWallet(currentUser.getId(), request.getCurrency());
-        log.info("Created/accessed wallet for user={}, currency={}", currentUser.getId(), request.getCurrency());
+        logger.info("Created/accessed wallet for user={}, currency={}", currentUser.getId(), request.getCurrency());
         return toDto(wallet);
     }
 
@@ -111,7 +111,7 @@ public class WalletController {
         }
         
         walletManager.debit(request.getWalletId(), request.getAmount());
-        log.info("Withdrawal requested: wallet={}, amount={}, address={}", 
+        logger.info("Withdrawal requested: wallet={}, amount={}, address={}", 
                 request.getWalletId(), request.getAmount(), request.getAddress());
         
         // В production: создать заявку на вывод и отправить в блокчейн

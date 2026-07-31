@@ -75,7 +75,7 @@ public class BlockchainAddressGenerator {
         } else if ("USDT".equals(normalizedCurrency) || "TETHER".equals(normalizedCurrency)) {
             return generateTronAddress();
         } else {
-            log.warn("Unknown currency for address generation: {}", currency);
+            logger.warn("Unknown currency for address generation: {}", currency);
             return "ADDR_" + currency + "_" + System.currentTimeMillis();
         }
     }

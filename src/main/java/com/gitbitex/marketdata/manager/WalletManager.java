@@ -66,7 +66,7 @@ public class WalletManager {
         wallet.setAddress(address);
         
         walletRepository.save(wallet);
-        log.info("Created wallet for user={}, currency={}, address={}", userId, currency, address);
+        logger.info("Created wallet for user={}, currency={}, address={}", userId, currency, address);
         return wallet;
     }
 
@@ -75,7 +75,7 @@ public class WalletManager {
      */
     public void credit(String walletId, BigDecimal amount) {
         walletRepository.updateBalance(walletId, amount, false);
-        log.info("Credited wallet={} with amount={}", walletId, amount);
+        logger.info("Credited wallet={} with amount={}", walletId, amount);
     }
 
     /**
@@ -83,7 +83,7 @@ public class WalletManager {
      */
     public void debit(String walletId, BigDecimal amount) {
         walletRepository.updateBalance(walletId, amount, true);
-        log.info("Debited wallet={} with amount={}", walletId, amount);
+        logger.info("Debited wallet={} with amount={}", walletId, amount);
     }
 
     /**
@@ -104,7 +104,7 @@ public class WalletManager {
         wallet.setUpdatedAt(new Date());
         
         walletRepository.save(wallet);
-        log.info("Locked funds in wallet={}, amount={}", walletId, amount);
+        logger.info("Locked funds in wallet={}, amount={}", walletId, amount);
     }
 
     /**
@@ -125,7 +125,7 @@ public class WalletManager {
         wallet.setUpdatedAt(new Date());
         
         walletRepository.save(wallet);
-        log.info("Unlocked funds in wallet={}, amount={}", walletId, amount);
+        logger.info("Unlocked funds in wallet={}, amount={}", walletId, amount);
     }
 
     /**
@@ -134,7 +134,7 @@ public class WalletManager {
     public void transfer(String fromWalletId, String toWalletId, BigDecimal amount) {
         debit(fromWalletId, amount);
         credit(toWalletId, amount);
-        log.info("Transferred from={} to={} amount={}", fromWalletId, toWalletId, amount);
+        logger.info("Transferred from={} to={} amount={}", fromWalletId, toWalletId, amount);
     }
 
     /**
